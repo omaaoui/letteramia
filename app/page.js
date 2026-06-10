@@ -27,18 +27,23 @@ export default function App() {
     if (!docType || !situation.trim()) return;
     setLoading(true);
     setError("");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30_000);
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ situation, docType, inputLang }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const json = await res.json();
       if (!res.ok) { setError(json.error || "Error. Please try again."); setLoading(false); return; }
       setResult(json.text);
       setStep("result");
     } catch (e) {
-      setError(`Error: ${e.message}`);
+      clearTimeout(timeout);
+      setError(e.name === "AbortError" ? "Request timed out. Please try again." : `Error: ${e.message}`);
     }
     setLoading(false);
   }
@@ -67,7 +72,7 @@ export default function App() {
             <div style={{ fontSize: 10, color: textDim, letterSpacing: "0.14em", textTransform: "uppercase" }}>Expat Document Assistant · Italy</div>
           </div>
         </div>
-        <a href="https://ko-fi.com" target="_blank" rel="noreferrer" style={{ background: `linear-gradient(135deg, ${gold}, ${goldLight})`, color: "#0a0a0a", padding: "8px 16px", borderRadius: 6, fontSize: 13, fontWeight: "bold", textDecoration: "none" }}>☕ Support</a>
+        <a href="https://ko-fi.com/omaoui" target="_blank" rel="noreferrer" style={{ background: `linear-gradient(135deg, ${gold}, ${goldLight})`, color: "#0a0a0a", padding: "8px 16px", borderRadius: 6, fontSize: 13, fontWeight: "bold", textDecoration: "none" }}>☕ Support</a>
       </header>
 
       <main style={{ maxWidth: 720, margin: "0 auto", padding: "48px 24px" }}>
@@ -135,7 +140,7 @@ export default function App() {
                 style={{ flex: 1, background: copied ? "rgba(70,120,50,0.2)" : "rgba(201,168,76,0.1)", border: `1px solid ${copied ? "#4a8a3a" : gold}`, color: copied ? "#7aba6a" : gold, padding: "14px", borderRadius: 8, cursor: "pointer", fontSize: 14, fontWeight: "bold", fontFamily: "inherit" }}>
                 {copied ? "✓ Copied!" : "📋 Copy Document"}
               </button>
-              <a href="https://ko-fi.com" target="_blank" rel="noreferrer" style={{ flex: 1, background: `linear-gradient(135deg, ${gold}, ${goldLight})`, color: "#0a0a0a", padding: "14px", borderRadius: 8, fontSize: 14, fontWeight: "bold", textDecoration: "none", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>☕ Support the project</a>
+              <a href="https://ko-fi.com/omaoui" target="_blank" rel="noreferrer" style={{ flex: 1, background: `linear-gradient(135deg, ${gold}, ${goldLight})`, color: "#0a0a0a", padding: "14px", borderRadius: 8, fontSize: 14, fontWeight: "bold", textDecoration: "none", textAlign: "center", display: "flex", alignItems: "center", justifyContent: "center" }}>☕ Support the project</a>
             </div>
             <p style={{ textAlign: "center", fontSize: 12, color: textDim, marginTop: 18, lineHeight: 1.7 }}>Replace all [PLACEHOLDER] fields before sending.<br />Not legal advice.</p>
           </>
