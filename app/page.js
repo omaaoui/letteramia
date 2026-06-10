@@ -27,18 +27,23 @@ export default function App() {
     if (!docType || !situation.trim()) return;
     setLoading(true);
     setError("");
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 30_000);
     try {
       const res = await fetch("/api/generate", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ situation, docType, inputLang }),
+        signal: controller.signal,
       });
+      clearTimeout(timeout);
       const json = await res.json();
       if (!res.ok) { setError(json.error || "Error. Please try again."); setLoading(false); return; }
       setResult(json.text);
       setStep("result");
     } catch (e) {
-      setError(`Error: ${e.message}`);
+      clearTimeout(timeout);
+      setError(e.name === "AbortError" ? "Request timed out. Please try again." : `Error: ${e.message}`);
     }
     setLoading(false);
   }
