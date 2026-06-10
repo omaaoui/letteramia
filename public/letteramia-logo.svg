@@ -1,0 +1,28 @@
+<svg width="480" height="120" viewBox="0 0 480 120" role="img" xmlns="http://www.w3.org/2000/svg">
+  <title>LetteraMia logo</title>
+  <desc>LetteraMia — your voice in Italian</desc>
+
+  <!-- MARK -->
+  <path d="M 36 10
+           C 33 24 27 44 28 62
+           C 29 74 35 82 45 85
+           C 57 89 68 82 70 72
+           C 73 60 66 50 56 49
+           C 46 48 40 56 43 64
+           C 45 70 52 73 58 69"
+        stroke="#D4622A" stroke-width="4" fill="none"
+        stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="58" cy="69" r="4" fill="#D4622A"/>
+  <line x1="22" y1="88" x2="80" y2="88" stroke="#D4622A" stroke-width="1.2" stroke-linecap="round" opacity="0.2"/>
+
+  <!-- DIVIDER -->
+  <line x1="96" y1="14" x2="96" y2="88" stroke="#1c1c1c" stroke-width="0.8" opacity="0.12"/>
+
+  <!-- WORDMARK -->
+  <text x="108" y="76" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="52" letter-spacing="-1.5">
+    <tspan font-weight="200" fill="#1c1c1c">lettera</tspan><tspan font-weight="700" fill="#D4622A">mia</tspan>
+  </text>
+
+  <!-- TAGLINE -->
+  <text x="109" y="96" font-family="'Helvetica Neue', Helvetica, Arial, sans-serif" font-size="10" fill="#aaa" letter-spacing="3.5">your voice · in italian</text>
+</svg>

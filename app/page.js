@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import Logo from "./components/Logo";
 
 const DOC_TYPES = [
   { id: "residenza", label: "Residenza / Anagrafe", icon: "🏛️" },
@@ -65,12 +66,8 @@ export default function App() {
   return (
     <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0d0b07 0%, #1a1209 50%, #0d0b07 100%)", fontFamily: "'Georgia', serif", color: "#e8dcc8" }}>
       <header style={{ borderBottom: `1px solid ${border}`, padding: "24px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(13,11,7,0.9)", position: "sticky", top: 0, zIndex: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <span style={{ fontSize: 26 }}>🇮🇹</span>
-          <div>
-            <div style={{ fontSize: 20, fontWeight: "bold", color: gold }}>LetteraMia</div>
-            <div style={{ fontSize: 10, color: textDim, letterSpacing: "0.14em", textTransform: "uppercase" }}>Expat Document Assistant · Italy</div>
-          </div>
+        <div style={{ display: "flex", alignItems: "center" }}>
+          <Logo variant="dark" size="sm" />
         </div>
         <a href="https://ko-fi.com/omaoui" target="_blank" rel="noreferrer" style={{ background: `linear-gradient(135deg, ${gold}, ${goldLight})`, color: "#0a0a0a", padding: "8px 16px", borderRadius: 6, fontSize: 13, fontWeight: "bold", textDecoration: "none" }}>☕ Support</a>
       </header>
