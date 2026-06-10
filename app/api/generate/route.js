@@ -6,7 +6,28 @@ if (!process.env.ANTHROPIC_API_KEY) {
 
 const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
+const RATE_LIMIT = 10;
+const WINDOW_MS = 60_000;
+const ipMap = new Map();
+
+function isRateLimited(ip) {
+  const now = Date.now();
+  const entry = ipMap.get(ip) ?? { count: 0, start: now };
+  if (now - entry.start > WINDOW_MS) {
+    entry.count = 0;
+    entry.start = now;
+  }
+  entry.count++;
+  ipMap.set(ip, entry);
+  return entry.count > RATE_LIMIT;
+}
+
 export async function POST(req) {
+  const ip = req.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+  if (isRateLimited(ip)) {
+    return Response.json({ error: "Too many requests. Please wait a minute." }, { status: 429 });
+  }
+
   try {
     const { situation, docType, inputLang } = await req.json();
 
