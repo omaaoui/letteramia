@@ -14,6 +14,13 @@ const DOC_TYPES = [
 
 const LANGS = ["English", "Français", "العربية", "Italiano"];
 
+const PLACEHOLDERS = {
+  "English": `E.g. "I registered for residenza 3 months ago and haven't heard back. I want to follow up with the Municipio."`,
+  "Français": `Ex. "J'ai déposé ma demande de résidence il y a 3 mois et je n'ai pas eu de réponse. Je veux relancer la Mairie."`,
+  "العربية": `مثال: "تقدمت بطلب تسجيل الإقامة منذ 3 أشهر ولم أتلقَّ أي رد. أريد إرسال رسالة متابعة للبلدية."`,
+  "Italiano": `Es. "Ho presentato la domanda di residenza 3 mesi fa e non ho ricevuto risposta. Voglio fare un sollecito al Municipio."`,
+};
+
 export default function App() {
   const [step, setStep] = useState("form");
   const [docType, setDocType] = useState(null);
@@ -104,7 +111,7 @@ export default function App() {
 
             <section style={{ marginBottom: 32 }}>
               <label style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.14em", color: textDim, display: "block", marginBottom: 12 }}>3 · Describe your situation</label>
-              <textarea value={situation} onChange={(e) => setSituation(e.target.value)} placeholder={`E.g. "I registered for residenza 3 months ago and haven't heard back. I want to follow up with the Municipio."`} rows={5}
+              <textarea value={situation} onChange={(e) => setSituation(e.target.value)} placeholder={PLACEHOLDERS[inputLang]} rows={5}
                 style={{ width: "100%", background: "rgba(255,255,255,0.03)", border: `1px solid ${border}`, borderRadius: 10, color: "#e8dcc8", fontSize: 15, padding: "16px", resize: "vertical", fontFamily: "inherit", lineHeight: 1.7, outline: "none", boxSizing: "border-box" }}
                 onFocus={(e) => (e.target.style.borderColor = gold)} onBlur={(e) => (e.target.style.borderColor = border)} />
             </section>
