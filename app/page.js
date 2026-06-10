@@ -64,7 +64,7 @@ export default function App() {
   const gold = "#c9a84c"; const goldLight = "#e8c86a"; const border = "#2a2010"; const textMuted = "#9a8a6a"; const textDim = "#5a4a2a";
 
   return (
-    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0d0b07 0%, #1a1209 50%, #0d0b07 100%)", fontFamily: "'Georgia', serif", color: "#e8dcc8" }}>
+    <div style={{ minHeight: "100vh", background: "linear-gradient(135deg, #0d0b07 0%, #1a1209 50%, #0d0b07 100%)", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif", color: "#e8dcc8" }}>
       <header style={{ borderBottom: `1px solid ${border}`, padding: "24px 40px", display: "flex", alignItems: "center", justifyContent: "space-between", background: "rgba(13,11,7,0.9)", position: "sticky", top: 0, zIndex: 10 }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <Logo variant="dark" size="sm" />
@@ -128,7 +128,7 @@ export default function App() {
                 {summary}
               </div>
             )}
-            <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${border}`, borderRadius: 10, padding: "26px", fontSize: 15, lineHeight: 1.95, color: "#ddd0b8", whiteSpace: "pre-wrap", fontFamily: "'Georgia', serif", marginBottom: 18 }}>
+            <div style={{ background: "rgba(255,255,255,0.03)", border: `1px solid ${border}`, borderRadius: 10, padding: "26px", fontSize: 15, lineHeight: 1.95, color: "#ddd0b8", whiteSpace: "pre-wrap", fontFamily: "-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif", marginBottom: 18 }}>
               <div style={{ fontSize: 10, textTransform: "uppercase", letterSpacing: "0.12em", color: textDim, marginBottom: 14 }}>🇮🇹 Italian Document</div>
               {italian}
             </div>
